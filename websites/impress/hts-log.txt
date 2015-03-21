@@ -1,0 +1,11 @@
+HTTrack3.48-19 launched on Sat, 21 Mar 2015 02:15:45 at http://exequiel09.github.io/symposium-presentation/
+(winhttrack http://exequiel09.github.io/symposium-presentation/ -O "./websites/impress" -%v )
+
+Information, Warnings and Errors reported for this mirror:
+note:	the hts-log.txt file, and hts-cache folder, may contain sensitive information,
+	such as username/password authentication for websites mirrored in this project
+	do not share these files/folders if you want these information to remain private
+
+
+HTTrack Website Copier/3.48-19 mirror complete in 20 seconds : 26 links scanned, 25 files written (603483 bytes overall) [488759 bytes received at 24437 bytes/sec], 281390 bytes transferred using HTTP compression in 6 files, ratio 52%, 6.5 requests per connection
+(No errors, 0 warnings, 0 messages)
