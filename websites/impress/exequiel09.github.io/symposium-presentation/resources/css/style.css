@@ -167,7 +167,7 @@ body{
     font-size: 30pt;
     line-height: 40pt;
     padding: 15px 40px;
-    text-align: justify;
+    /* text-align: justify; */
 }
 
 em{

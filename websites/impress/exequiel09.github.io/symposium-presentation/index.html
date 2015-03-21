@@ -86,7 +86,7 @@
                             <li>Table</li>
                             <li>
 			        Indexes
-				<ul>
+				<ul class="lv1_indent">
 				  <li> Columns </li>
 				  <li> Type </li>
 				  <li> Clustering </li>
@@ -110,10 +110,12 @@
 			        <p>Output: One data stream </p>
 			    </li>
 			    <li>
-			        <p> Implementation </p>
+			      <p> Implementation </p>
+			      <ul class="lv1_indent">
 				<li> open() </li>
 				<li> getnext() </li>
 				<li> close() </li>
+			      </ul>
 			    </li>
 			    <li>
 			         <p> Pipelined/Blocking <p>
@@ -129,14 +131,18 @@
                         Operator Trees
                     </div>
                     <div class="slide-content">
-                        <ol class="lv0_indent">
-                            <li>An algebraic expression tree consisting of selection and join can be realized</li>
-                            <li>using an operator tree consisting of scan,filter and join nodes</li>
+                        <ul class="lv0_indent">
+                          <li>An algebraic expression tree consisting of selection and join can be realized</li>
+			  <ul class="lv1_indent">
+                            <li>using an operator tree consisting of scan, filter and join nodes</li>
                             <li>root node is the output of algebraic expression</li>
-                            <li>(Sequential) Operator tree same as</li>
+			  </ul>
+                          <li>(Sequential) Operator tree same as</li>
+			  <ul class="lv1_indent">
                             <li>annotated Query Tree</li>
-			    <li>execution Plan(or,simply plan)</li>
-                        </ol>
+			    <li>execution Plan(or, simply plan)</li>
+			  </ul>
+                        </ul>
                     </div>
                 </div>
                 <!-- EOF Benefits of FOSS -->
