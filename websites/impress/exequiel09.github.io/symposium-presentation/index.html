@@ -137,11 +137,8 @@
 			  <ul class="lv1_indent">
                             <li>using an operator tree consisting of scan, filter and join nodes</li>
                             <li>root node is the output of algebraic expression</li>
-			  </ul>
-                          <li>(Sequential) Operator tree same as</li>
-			  <ul class="lv1_indent">
-                            <li>annotated Query Tree</li>
-			    <li>execution Plan(or, simply plan)</li>
+			    <li>leaf node are scans on stored relations</li>
+			    <li>child node is an input data stream to its parent</li>
 			  </ul>
                         </ul>
                     </div>
@@ -158,7 +155,7 @@
               </div>
               <div class="slide-content">
 		<figure id="foss_question_logo">
-                  <img src="./resources/img/operator_tree.png" alt="DBMS" width="650" height="650" />
+                  <img src="./resources/img/operator_tree.png" alt="DBMS" width="650" height="550" />
                 </figure>
               </div>
             </div>
@@ -218,7 +215,7 @@
                     </div>
                     <div class="slide-content">
 		      <ul class="lv0_indent">
-			<li> Equivalence Transfroms </li>
+			<li> Equivalence Transforms </li>
 			  <ul class="lv1_indent">
 			    <li>Algebraic properties </li>
 			    <li>Implementation options </li>
@@ -364,6 +361,235 @@
 			   </ul>
                     </div>
                 </div>
+
+		<div id="possible-career-6" class="step slide" data-x="1400" data-y="6400">
+                  <div class="slide-title">
+                    Search Control Features
+                  </div>
+		  <div class="slide-content">
+		    <ul class="lv0_indent">
+		      <li>Avoid <em>Cartesian product</em> </li>
+		       <ul class="lv1_indent">
+			 <li>Don't consider ( R1 X R2 ) Join R3 if ( R1 Join R3) Join R2 is feasible</li>
+		       </ul>
+		       <li>Recognize <em>interseting orders</em> as violation of principle of optimality:</li>
+			 <ul class="lv1_indent">
+			   <li>Cost-of(SM (R<SUB>1</SUB>,R<SUB>2</SUB>)) > Cost-of( NL (R<SUB>1</SUB>,R<SUB>2</SUB>))</li>
+			   <li>But, Cost-of( SM( SM( R1,R2 )), R3) may be much less expensive than other options</li>
+			  </ul>
+			 </ul>
+		    </div>
+		  </div>
+
+		<div id="possible-career-7" class="step slide" data-x="1400" data-y="7400">
+                  <div class="slide-title">
+                    Key Ideas from System R
+                  </div>
+		  <div class="slide-content">
+		    <ul class="lv0_indent">
+		      <li>Cost model based on </li>
+		       <ul class="lv1_indent">
+			 <li>access methods</li>
+			 <li>size and cardinality of relations</li>
+		       </ul>
+		       <li>Enumeration exploits</li>
+			 <ul class="lv1_indent">
+			   <li>dynamic programming</li>
+			   <li>one optimal plan for each of equivalent expression</li>
+			   <li>violation of principle of optimality handled using interesting order</li>
+			  </ul>
+			 </ul>
+		    </div>
+		  </div>
+
+		<div id="possible-career-7" class="step slide" data-x="1400" data-y="8400">
+                  <div class="slide-title">
+                    Limitations of  System R
+                  </div>
+		  <div class="slide-content">
+		    <ul class="lv0_indent">
+		      <li>Cost model</li>
+		       <ul class="lv1_indent">
+			 <li>one aggregate number for every column ( inaccurate ) </li>
+			 <li>independence assumption</li>
+		       </ul>
+		       <li>Transformation</li>
+			 <ul class="lv1_indent">
+			   <li>limited to join ordering</li>
+			  </ul>
+			<li>Enumeration</li>
+			  <ul class="lv1_indent">
+			    <li>limited to single block queries</li>
+			  </ul>
+			 </ul>
+		    </div>
+		  </div>
+		
+		<div id="possible-career-20" class="step slide" data-x="600" data-y="5200">
+                  <div class="slide-title">
+                    Transformations
+                  </div>
+		  <div class="slide-content">
+		    <ul class="lv0_indent">
+		      <li>SQL is the target</li>
+		      <li>SQL identity may not be a good way to think about transformation</li>
+		       <ul class="lv1_indent">
+			 <li>Use algebraic framework</li>
+		       </ul>
+		       <li>May add, not just commute operators</li>
+			<li>Finding transformation is easy, finding a good one is hard</li>
+			  <ul class="lv1_indent">
+			    <li>Broadly applicable</li>
+			    <li>Interaction with other transformations</li>
+			  </ul>
+			 </ul>
+		    </div>
+		  </div>
+
+		<div id="possible-career-21" class="step slide" data-x="700" data-y="5300">
+                  <div class="slide-title">
+                    Case Studies of Transformations
+                  </div>
+		  <div class="slide-content">
+		    <ul class="lv0_indent">
+		      <li>Commuting group by and join</li>
+		      <li>Commuting join and outer-join</li>
+		       <li>Optimize multi-block queries</li>
+			  <ul class="lv1_indent">
+			    <li>Collapese multi-block query to a single block query</li>
+			    <li>Optimize across multiple query blocks</li>
+			  </ul>
+			 </ul>
+		    </div>
+		  </div>
+
+		<div id="possible-career-22" class="step slide" data-x="800" data-y="5300">
+                  <div class="slide-title">
+                    Enumeration Architectures
+                  </div>
+		  <div class="slide-content">
+		    <ul class="lv0_indent">
+		      <li>Stress on extensibility ( for optimizer developers )</li>
+		      <li>Key features</li>
+			  <ul class="lv1_indent">
+			    <li>Explicit representation of transformation as rules</li>
+			    <li>Explicit representation of "properties of plans"</li>
+			    <li>Rule engine</li>
+			  </ul>
+		       <li>Examples: Starburst, Volcano</li>
+		       <li>Framework != Optimizer </li>
+		    </ul>
+		    </div>
+		  </div>
+
+		<div id="possible-career-23" class="step slide" data-x="900" data-y="5400">
+                  <div class="slide-title">
+                    Volcano Overview
+                  </div>
+		  <div class="slide-content">
+		    <ul class="lv0_indent">
+		      <li>Query as an algebraic tree</li>
+		      <li>Transformation Rules</li>
+			  <ul class="lv1_indent">
+			    <li>Logical rules, Implementation rules</li>
+			  </ul>
+		       <li>Optimization Goal</li>
+		         <ul class="lv1_indent">
+			   <li>Logical Expression, Physical Properties, Estimated Cost</li>
+			 </ul>
+		       <li>Top-down algorithm</li>
+		         <ul class="lv1_indent">
+			   <li>Sub-expression optimized on demand</li>
+			   <li>Enumerate possible moves</li>
+			   <li>Select move based on promise</li>
+			   <li>Branch and bound</li>
+			 </ul>
+			 </ul>
+		    </div>
+		  </div>
+
+		
+		
+
+		
+		<div id="possible-career-8" class="step slide" data-x="1500" data-y="8400">
+                  <div class="slide-title">
+                    Distributed Systems
+                  </div>
+		  <div class="slide-content">
+		    <ul class="lv0_indent">
+		      <li>Optimization in Distributed Systems</li>
+		       <ul class="lv1_indent">
+			 <li>Communication cost  v.s. local processing time</li>
+		       </ul>
+		       <li>Evolution of Distributed Systems</li>
+			 <ul class="lv1_indent">
+			   <li>Scalability concerns => Parallel systems</li>
+			   <li>Distributed information => Replicated sites</li>
+			  </ul>
+			</ul>
+		    </div>
+		  </div>
+
+		<div id="possible-career-8" class="step slide" data-x="1600" data-y="8400">
+                  <div class="slide-title">
+                    Parallel Database Systems
+                  </div>
+		  <div class="slide-content">
+		    <ul class="lv0_indent">
+		      <li>Objective is to minimize response time</li>
+		      <li>Forms of parallelism</li>
+		       <ul class="lv1_indent">
+			 <li>Independent, Pipelined, Partitioned</li>
+		       </ul>
+		       <li>Scheduling of operators becomes an important aspect of optimization</li>
+			</ul>
+		    </div>
+		  </div>
+
+		<div id="possible-career-9" class="step slide" data-x="1900" data-y="8400">
+                  <div class="slide-title">
+                    Parallel Database Systems
+                  </div>
+		  <div class="slide-content">
+		    <ul class="lv0_indent">
+		      <li>Two step approach</li>
+		       <ul class="lv1_indent">
+			 <li>Generate a sequential plan</li>
+			 <li>Apply a scheduling algorithm to <em>parallize</em> the plan</li>
+		       </ul>
+		      <li>The first phase should take into account cost of communication</li>
+		       <ul class="lv1_indent">
+			 <li>Influences partitioning attribute</li>
+		       </ul>     
+		       <li>Scheduling algorithm assigns processors to operators</li>
+		    </ul>
+		    </div>
+		  </div>
+
+		<div id="possible-career-9" class="step slide" data-x="2200" data-y="8700">
+                  <div class="slide-title">
+                    Concluding Remarks
+                  </div>
+		  <div class="slide-content">
+		    <ul class="lv0_indent">
+		      <li>Many factors determine performance</li>
+		       <ul class="lv1_indent">
+			 <li>Query Processing engine</li>
+			 <li>Query Optimizer</li>
+			 <li>Physical database design</li>
+			 <li>Settings of the "knobs"</li>
+		       </ul>
+		      <li>Many open problems</li>
+		       <ul class="lv1_indent">
+			 <li>Architectural framework is important</li>
+			 <li>Oversimplification may render results useless</li>
+			 <li>Need to pay attention to SQL semantics</li>
+		       </ul>     
+		    </ul>
+		    </div>
+		  </div>
+			 
                 <!-- EOF Careers in Open Source -->
             
             <!-- EOF Building your Career in Free and Open Source Software -->           
@@ -377,37 +603,7 @@
             <!-- EOF Questions? -->
             
             <!-- Thank You -->
-            <div id="thank-you" class="step slide" data-x="3700" data-y="3900" data-scale="3" data-z="1000">
-                <div id="ty" class="slide-title">
-                    Thank You!
-                </div>
-                <div class="slide-content">
-                    <p id="name">
-                        <em>Exequiel Ceasar S. Navarrete</em>
-                    </p>
-                    <p id="email">
-                        <a href="mailto:exequiel.navarrete09@gmail.com">exequiel.navarrete09@gmail.com</a>
-                    </p>    
-                    <p id="gplus">                        
-                        <a href="https://plus.google.com/112137990630445442756">
-                            <img src="resources/img/social/google.png" alt="" width="64" height="64" />
-                            Google+
-                        </a>
-                    </p>
-                    <p id="fb">                        
-                        <a href="https://www.facebook.com/souLLess.09.exi">
-                            <img src="resources/img/social/facebook.png" alt="" width="64" height="64" />
-                            Facebook
-                        </a>
-                    </p>
-                    <p id="twitter">                        
-                        <a href="https://twitter.com/ichigo1411">
-                            <img src="resources/img/social/twitter.png" alt="" width="64" height="64" />
-                            Twitter
-                        </a>
-                    </p>                   
-                </div>
-            </div>
+
             <!-- EOF Thank You -->
             
             <!-- Overview -->
